@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Tugas Web 1 - Operator Penugasan </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 30px;
+        }
+        .container {
+            background: #ffffff;
+            width: 320px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid #000000;
+        }
+        h3 {
+            text-align: center;
+            margin-top: 0;
+            text-transform: uppercase;
+        }
+        .form-grup {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+        select, button {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #000000;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .total {
+            margin-top: 15px;
+            background: #e1e1e1;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h3>Vans Store </h3>
+    
+    <div class="form-grup">
+        <label>Total Harga:</label>
+        <input type="text" value="Rp 1.999.000" disabled style="width: 100%; padding: 8px; box-sizing: border-box;">
+    </div>
+
+    <div class="form-grup">
+        <label>Total Harga:</label>
+        <select id="diskon">
+            <option value="0">Normal Price</option>
+            <option value="199900">Diskon 10%</option>
+            <option value="399800">Diskon 20%</option>
+        </select>
+    </div>
+
+    <button onclick="hitungPenugasan()">Total Harga</button>
+
+    <div class="total" id="hasil">
+        Total Akhir: Rp 1.999.000
+    </div>
+</div>
+
+<script>
+    function hitungPenugasan() {
+        let totalHarga = 1999000; 
+        let potongan = parseInt(document.getElementById("diskon").value);
+        
+        // DI SINI OPERATOR PENUGASANNYA BERUBAH JADI -=
+        totalHarga -= potongan; 
+        
+        document.getElementById("hasil").innerText = "Total Akhir: Rp " + totalHarga.toLocaleString('id-ID');
+    }
+</script>
+
+</body>
+</html>

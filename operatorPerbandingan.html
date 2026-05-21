@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Tugas Web 1 - Operator Pembandingan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 30px;
+        }
+        .container {
+            background: #ffffff;
+            width: 320px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid #000000;
+        }
+        h3 {
+            text-align: center;
+            margin-top: 0;
+            text-transform: uppercase;
+        }
+        .form-grup {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+        input, button {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #000000;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .total {
+            margin-top: 15px;
+            background: #e1e1e1;
+            padding: 10px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h3>Vans Store </h3>
+    
+    <div class="form-grup">
+        <label>Syarat Dapat Bonus Gantungan Kunci:</label>
+        <p style="margin: 5px 0; font-size: 14px; font-weight: bold; color: #ba0c2f;">Minimal Belanja Rp 1.500.000</p>
+    </div>
+
+    <div class="form-grup">
+        <label>Masukkan Total Belanjaan (Rp):</label>
+        <input type="number" id="totalBelanja" value="1200000">
+    </div>
+
+    <button onclick="cekBonus()">Cek Status Bonus</button>
+
+    <div class="total" id="hasil">
+        Masukkan angka lalu klik tombol
+    </div>
+</div>
+
+<script>
+    function cekBonus() {
+        // Ambil nominal yang diketik oleh user
+        let belanja = parseInt(document.getElementById("totalBelanja").value);
+        let syaratMinimal = 1500000;
+        
+        // OPERATOR PEMBANDINGAN (Lebih Besar Sama Dengan)
+        let dapatBonus = belanja >= syaratMinimal;
+        
+        // Logika if-else sederhana untuk menampilkan hasil boolean-nya
+        if (dapatBonus) {
+            document.getElementById("hasil").innerText = "Selamat! Anda dapat Gantungan Kunci Vans.";
+            document.getElementById("hasil").style.background = "#d4edda"; // Warna hijau soft biar kelihatan sukses
+        } else {
+            document.getElementById("hasil").innerText = "Maaf, belum mencapai syarat minimal.";
+            document.getElementById("hasil").style.background = "#f8d7da"; // Warna merah soft
+        }
+    }
+</script>
+
+<!--
+
+<script>
+    let belanja=20000;
+let syaratminimal=250000;
+
+if (belanja > syaratminimal) {
+    console.log("selamat anda dapat diskon");
+    
+} else{
+    console.log("maaf anda tidak dapat diskon");
+    
+
+}
+    -->
+
+</script>
+</body>
+</html>
