@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Tugas Gabungan Operator - Vans Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            padding: 20px;
+        }
+        .container {
+            background: #911e1e; 
+            color: #ffffff;
+            width: 360px;
+            margin: auto;
+            padding: 25px;
+            border: 2px solid #fcfcfc;
+            border-radius: 8px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+        }
+        h2 {
+            text-align: center;
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .section-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .section-title {
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #ffeb3b; 
+            margin-bottom: 10px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+            padding-bottom: 3px;
+        }
+        .form-grup {
+            margin-bottom: 12px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+        select, input, button {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border-radius: 4px;
+            border: none;
+        }
+        input:disabled {
+            background-color: #e1e1e1;
+            color: #333;
+        }
+        button {
+            background-color: #000000;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+        button:hover {
+            background-color: #222;
+        }
+        .hasil-box {
+            margin-top: 10px;
+            background: #e1e1e1;
+            color: #000000;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Vans Store</h2>
+    
+    <div class="section-box">
+        <div class="section-title">Kasir</div>
+        <div class="form-grup">
+            <label>Pilih Model:</label>
+            <select id="hargaSepatu">
+                <option value="1149000">Vans Old Skool - Rp 1.149.000</option>
+                <option value="1049000">Vans Slip-On - Rp 1.049.000</option>
+                <option value="999000">Vans Authentic - Rp 999.000</option>
+            </select>
+        </div>
+        <div class="form-grup">
+            <label>Jumlah barang (Qty):</label>
+            <input type="number" id="qty" value="1" min="1">
+        </div>
+        <button onclick="total()">total</button>
+        <div class="hasil-box" id="hasilAritmatika">Total: Rp 1.139.000</div>
+    </div>
+
+    <div class="section-box">
+        <div class="section-title">Minimal Diskon</div>
+        <div class="form-grup">
+            <label>Total Harga Sebelum Voucher:</label>
+            <input type="text" id="totalSmt" value="Rp 1.139.000" disabled>
+        </div>
+        <div class="form-grup">
+            <label>Pilih Voucher Diskon:</label>
+            <select id="diskon">
+                <option value="0">Normal Price (0%)</option>
+                <option value="0.10">Diskon 10%</option>
+                <option value="0.20">Diskon 20%</option>
+            </select>
+        </div>
+        <button onclick="hitungPenugasan()">CEK Diskon</button>
+        <div class="hasil-box" id="hasilPenugasan">Total Akhir: Rp 1.139.000</div>
+    </div>
+
+    <div class="section-box">
+        <div class="section-title">Bonus</div>
+        <div class="form-grup">
+            <label style="font-weight: bold; color: #ffeb3b;">Syarat Bonus: Minimal Belanja Rp 1.500.000</label>
+        </div>
+        <button onclick="cekPerbandingan()">Cek Status Bonus</button>
+        <div class="hasil-box" id="hasilPerbandingan">Klik tombol untuk cek bonus</div>
+    </div>
+
+</div>
+
+<script>
+    // Variabel global penampung nilai akhir
+    let globalTotalHarga = 1139000; 
+
+    // Fungsi 1: Operator Aritmatika
+    function hitungAritmatika() {
+        let harga = parseInt(document.getElementById("hargaSepatu").value);
+        let jumlah = parseInt(document.getElementById("qty").value);
+        
+        harga = harga * jumlah; 
+        let diskonTetap = 10000;
+        globalTotalHarga = harga - diskonTetap;
+        
+        document.getElementById("hasilAritmatika").innerText = "Total: Rp " + globalTotalHarga.toLocaleString('id-ID');
+        document.getElementById("totalSmt").value = "Rp " + globalTotalHarga.toLocaleString('id-ID');
+    }
+
+    // Fungsi 2: Operator Penugasan
+    function hitungPenugasan() {
+        let totalHargaSmt = globalTotalHarga; 
+        let persenDiskon = parseFloat(document.getElementById("diskon").value);
+        let potongan = totalHargaSmt * persenDiskon;
+        
+        // Menggunakan operator penugasan -=
+        totalHargaSmt -= potongan; 
+        
+        document.getElementById("hasilPenugasan").innerText = "Total Akhir: Rp " + totalHargaSmt.toLocaleString('id-ID');
+        globalTotalHarga = totalHargaSmt; 
+    }
+
+    // Fungsi 3: Operator Perbandingan
+    function cekPerbandingan() {
+        let syaratMinimal = 1500000;
+        let infoHasil = document.getElementById("hasilPerbandingan");
+        
+        // Menggunakan operator perbandingan >=
+        let dapatBonus = globalTotalHarga >= syaratMinimal;
+        
+        if (dapatBonus) {
+            infoHasil.innerText = "Selamat! Anda dapat Gantungan Kunci Vans. 🎉";
+            infoHasil.style.background = "#d4edda"; 
+            infoHasil.style.color = "#155724";
+        } else {
+            infoHasil.innerText = "Maaf, belum mencapai syarat minimal belanja.";
+            infoHasil.style.background = "#f8d7da"; 
+            infoHasil.style.color = "#721c24";
+        }
+    }
+</script>
+
+</body>
+</html>
