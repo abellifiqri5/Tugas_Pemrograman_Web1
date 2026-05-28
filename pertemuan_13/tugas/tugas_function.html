@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 2: Fungsi Kompleks</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f7fafc; padding: 30px; }
+        .box { max-width: 500px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #38a169; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; width: 100%; }
+        button:hover { background-color: #2f855a; }
+        #hasilGaji { margin-top: 20px; padding: 15px; background: #e6fffa; border-left: 4px solid #38a169; border-radius: 4px; white-space: pre-line; }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h3>Sistem Hitung Gaji Karyawan </h3>
+        <div class="input-group">
+            <label for="gapok">Gaji Pokok (Rp):</label>
+            <input type="number" id="gapok" placeholder="Contoh: 4000000">
+        </div>
+        <div class="input-group">
+            <label for="jabatan">Tingkat Jabatan:</label>
+            <select id="jabatan">
+                <option value="Staff">Staff</option>
+                <option value="Manager">Manager</option>
+                <option value="Direktur">Direktur</option>
+            </select>
+        </div>
+        <button onclick="hitungGajiBersih()">Hitung Gaji Bersih</button>
+        <div id="hasilGaji">Rincian gaji akan tampil di sini...</div>
+    </div>
+
+    <script>
+        function hitungTunjangan(levelJabatan) {
+            if (levelJabatan === "Direktur") {
+                return 5000000;
+            } else if (levelJabatan === "Manager") {
+                return 2500000;
+            } else {
+                return 50000; // Tunjangan Staff biasa
+            }
+        }
+
+        function hitungPajak(totalPendapatan) {
+            let tarifPajak = 0;
+            if (totalPendapatan > 7000000) {
+                tarifPajak = 0.10; // Pajak 10% jika pendapatan di atas 7 juta
+            } else if (totalPendapatan > 4000000) {
+                tarifPajak = 0.05; // Pajak 5% jika pendapatan di atas 4 juta
+            }
+            return totalPendapatan * tarifPajak;
+        }
+        function hitungGajiBersih() {
+            const gajiPokok = parseFloat(document.getElementById('gapok').value) || 0;
+            const jabatan = document.getElementById('jabatan').value;
+
+            const tunjangan = hitungTunjangan(jabatan);
+
+            const totalKotor = gajiPokok + tunjangan;
+
+            const potonganPajak = hitungPajak(totalKotor);
+
+            const gajiBersih = totalKotor - potonganPajak;
+
+            document.getElementById('hasilGaji').innerText = 
+                `Rincian slip gaji:
+                -----------------------------------
+                Gaji Pokok      : Rp ${gajiPokok.toLocaleString('id-ID')}
+                Tunjangan (${jabatan}) : Rp ${tunjangan.toLocaleString('id-ID')}
+                Pajak Penghasilan: Rp ${potonganPajak.toLocaleString('id-ID')}
+                ===================================
+                Total Gaji Netto: Rp ${gajiBersih.toLocaleString('id-ID')}`;
+        }
+    </script>
+</body>
+</html>

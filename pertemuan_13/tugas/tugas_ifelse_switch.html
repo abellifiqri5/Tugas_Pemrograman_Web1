@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 1: Percabangan Kompleks</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f7fafc; padding: 30px; }
+        .box { max-width: 500px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #3182ce; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; width: 100%; }
+        button:hover { background-color: #2b6cb0; }
+        #hasil { margin-top: 20px; padding: 15px; background: #edf2f7; border-left: 4px solid #3182ce; border-radius: 4px; white-space: pre-line; }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h3>Sistem Cek Nilai </h3>
+        <div class="input-group">
+            <label for="inputNilai">Masukkan Nilai Akhir (0 - 100):</label>
+            <input type="number" id="inputNilai" placeholder="Contoh: 88">
+        </div>
+        <button onclick="cekKelulusan()">Analisis Nilai</button>
+        <div id="hasil">Hasil analisis akan muncul di sini...</div>
+    </div>
+
+    <script>
+        function cekKelulusan() {
+            const nilai = parseFloat(document.getElementById('inputNilai').value);
+            let grade = "";
+            let status = "";
+            let fasilitas = "";
+
+           
+            if (nilai >= 0 && nilai <= 100) {
+                if (nilai >= 85) {
+                    grade = "A";
+                    status = "Lulus dengan Predikat Pujian (Cumlaude)";
+                } else if (nilai >= 75) {
+                    grade = "B";
+                    status = "Lulus dengan Predikat Sangat Baik";
+                } else if (nilai >= 60) {
+                    grade = "C";
+                    status = "Lulus dengan Predikat Cukup";
+                } else {
+                    grade = "E";
+                    status = "Tidak Lulus (Wajib Mengulang Semester Depan)";
+                }
+            } else {
+                alert("Mohon masukkan angka nilai yang valid antara 0 sampai 100!");
+                return;
+            }
+
+            
+            switch (grade) {
+                case "A":
+                    fasilitas = "Mendapatkan beasiswa penuh dan akses prioritas perpustakaan digital.";
+                    break;
+                case "B":
+                    fasilitas = "Mendapatkan potongan UKT 15% untuk semester berikutnya.";
+                    break;
+                case "C":
+                    fasilitas = "Akses fasilitas standar kampus dan program mentoring gratis.";
+                    break;
+                case "E":
+                    fasilitas = "Diwajibkan mengikuti kelas bimbingan khusus belajar intensif.";
+                    break;
+                default:
+                    fasilitas = "Tidak ada fasilitas tersedia.";
+            }
+
+            document.getElementById('hasil').innerText = 
+                `Hasil Evaluasi:
+                -----------------------------------
+                Grade Anda : ${grade}
+                Status     : ${status}
+                Hak Reward : ${fasilitas}`;
+        }
+    </script>
+</body>
+</html>
