@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //array of object mahasiswa 3 data
+    let mahasiswa = [
+        {
+            nim: "123456789",
+            nama: "John Doe",
+            jurusan: "Informatika",
+            fakultas: "Teknik"
+        },
+        {
+            nim: "987654321",
+            nama: "Jane Doe",
+            jurusan: "Sistem Informasi",
+            fakultas: "Teknik"
+        },
+        {
+            nim: "333333333",
+            nama: "Charlie Brown",
+            jurusan: "Informatika",
+            fakultas: "Teknik"
+        }
+    ];
+
+    console.log(mahasiswa);
+    
+    //tampilkan dengan for
+    for (let i = 0; i < mahasiswa.length; i++) {
+        console.log(`${mahasiswa[i].nama} (${mahasiswa[i].nim}) - ${mahasiswa[i].jurusan}, ${mahasiswa[i].fakultas}`);
+    }
+    </script>
+</body>
+</html>

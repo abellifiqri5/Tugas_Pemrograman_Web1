@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Membuat array of objects yang berisi data mahasiswa
+let dataMahasiswa = [
+    {
+        nim: "231011400091",
+        nama: "ABELLI FIQRI",
+        jurusan: "Teknik Informatika",
+        fakultas: "Ilmu Komputer"
+    },
+    {
+        nim: "231011450102",
+        nama: "royyan alfa eza",
+        jurusan: "Teknik Informatika",
+        fakultas: "Ilmu Komputer"
+    },
+    {
+        nim: "231011450122",
+        nama: "Maulana Royyan Tsubaisa",
+        jurusan: "Teknik Informatika",
+        fakultas: "Ilmu Komputer"
+    }
+];
+
+// Menampilkan semua data ke console dalam bentuk array biasa
+console.log(dataMahasiswa);
+
+// Menampilkan data dengan format tabel agar lebih rapi di console browser
+console.table(dataMahasiswa);
+
+// Contoh cara mengakses salah satu data (misal: mengambil nama mahasiswa pertama)
+console.log("Nama mahasiswa pertama: " + dataMahasiswa[0].nama);
+    </script>
+</body>
+</html>
